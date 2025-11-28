@@ -1,0 +1,28 @@
+services:
+  api:
+    image: churn_prediction:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: churn_api
+    command: >
+      poetry run uvicorn src.api.server:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src:/usr/local/app/src:ro
+      - ./models:/usr/local/app/models:ro
+    restart: unless-stopped
+
+  ui:
+    image: churn_prediction:latest
+    container_name: churn_ui
+    command: >
+      poetry run streamlit run src/ui/ui.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./src:/usr/local/app/src:ro
+    restart: unless-stopped
+    depends_on:
+      - api

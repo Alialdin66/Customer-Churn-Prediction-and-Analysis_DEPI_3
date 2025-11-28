@@ -1,0 +1,50 @@
+[project]
+name = "customer-churn-prediction-and-analysis-depi-3"
+version = "0.1.0"
+description = "Customer-Churn-Prediction"
+authors = [
+    {name = "Alialdin66", email = "alialdin2003@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+
+# Production API dependencies
+dependencies = [
+    "pandas >=2.3.3,<3.0.0",
+    "numpy >=2.3.5,<3.0.0",
+    "scikit-learn >=1.7.2,<2.0.0",
+    "fastapi[standard] >=0.121.3,<0.122.0",
+    "pydantic >=2.12.4,<3.0.0"
+]
+
+
+# Important: package-mode MUST BE HERE
+[tool.poetry]
+package-mode = false
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+# ==========================
+#    UI (Streamlit)
+# ==========================
+[tool.poetry.group.ui.dependencies]
+streamlit = ">=1.51.0,<2.0.0"
+requests = ">=2.32.5,<3.0.0"
+
+
+# ==========================
+#    DEV (Training, EDA)
+# ==========================
+[tool.poetry.group.dev.dependencies]
+matplotlib = ">=3.10.7,<4.0.0"
+seaborn = ">=0.13.2,<0.14.0"
+plotly = ">=6.5.0,<7.0.0"
+kagglehub = ">=0.3.13,<0.4.0"
+scipy = ">=1.16.3,<2.0.0"
+imbalanced-learn = ">=0.14.0,<0.15.0"
+xgboost = ">=3.1.1,<4.0.0"
+nbformat = "^5.10.4"
